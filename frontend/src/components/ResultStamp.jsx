@@ -18,7 +18,16 @@ const DECISION_META = {
   },
 };
 
-export default function ResultStamp({ result }) {
+export default function ResultStamp({ result, loading, onReset }) {
+  if (loading) {
+    return (
+      <div className="result-empty stamping">
+        <span className="glyph pulse">§</span>
+        <p>Stamping application\u2026</p>
+      </div>
+    );
+  }
+
   if (!result) {
     return (
       <div className="result-empty">
@@ -33,7 +42,7 @@ export default function ResultStamp({ result }) {
   return (
     <>
       <div className="stamp-wrap">
-        <span className={`stamp ${meta.className}`} key={result.decision + result.totalScore}>
+        <span className={`stamp ${meta.className}`} key={result.decision + result.totalScore + result.id}>
           {meta.label}
         </span>
       </div>
@@ -49,6 +58,12 @@ export default function ResultStamp({ result }) {
       <ScoreBreakdown breakdown={result.breakdown} />
 
       <p className="decision-note">{meta.note}</p>
+
+      {onReset && (
+        <button type="button" className="reset-btn" onClick={onReset}>
+          Evaluate another application
+        </button>
+      )}
     </>
   );
 }

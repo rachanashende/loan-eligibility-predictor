@@ -18,15 +18,24 @@ const dateFmt = new Intl.DateTimeFormat("en-IN", {
   minute: "2-digit",
 });
 
-export default function HistoryPanel({ history }) {
+export default function HistoryPanel({ history, onClear }) {
   return (
     <div className="paper history-panel">
-      <h2>Register of Applications</h2>
-      <p className="sub">
-        {history.length === 0
-          ? "No applications yet this session."
-          : `${history.length} submission${history.length === 1 ? "" : "s"} this session, most recent first.`}
-      </p>
+      <div className="history-header-row">
+        <div>
+          <h2>Register of Applications</h2>
+          <p className="sub">
+            {history.length === 0
+              ? "No applications yet."
+              : `${history.length} submission${history.length === 1 ? "" : "s"} saved on this device, most recent first.`}
+          </p>
+        </div>
+        {history.length > 0 && (
+          <button type="button" className="clear-btn" onClick={onClear}>
+            Clear register
+          </button>
+        )}
+      </div>
 
       {history.length === 0 ? (
         <div className="result-empty">
