@@ -419,8 +419,40 @@ body {
   font-family: var(--font-mono);
 }
 
-.reset-btn {
+.result-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
   margin-top: 24px;
+}
+
+.download-btn {
+  background: var(--ink);
+  color: var(--parchment);
+  border: none;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 12px 20px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  width: 100%;
+  max-width: 320px;
+}
+
+.download-btn:hover:not(:disabled) {
+  background: var(--ink-soft);
+}
+
+.download-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.reset-btn {
   align-self: center;
   background: transparent;
   border: 1px solid var(--ink);
@@ -667,4 +699,166 @@ body {
   color: var(--steel);
   margin-top: 48px;
   letter-spacing: 0.04em;
+}
+
+/* ---------- Certificate (exported to PDF, rendered off-screen) ---------- */
+
+.certificate-offscreen {
+  position: fixed;
+  top: 0;
+  left: -10000px;
+  pointer-events: none;
+}
+
+.certificate {
+  width: 760px;
+  background: var(--card);
+  padding: 56px 60px;
+  font-family: var(--font-body);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+}
+
+.certificate-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 20px;
+  margin-bottom: 32px;
+}
+
+.certificate-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--steel);
+  margin-bottom: 6px;
+}
+
+.certificate-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 26px;
+  max-width: 440px;
+  line-height: 1.25;
+}
+
+.certificate-ref {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--steel);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.certificate-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--parchment-line);
+}
+
+.certificate-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--steel);
+}
+
+.certificate-value {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.certificate-stamp-wrap {
+  display: flex;
+  justify-content: center;
+  margin: 32px 0;
+}
+
+.certificate-stamp {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 32px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 14px 32px;
+  border: 4px double currentColor;
+  border-radius: 4px;
+  transform: rotate(-4deg);
+  display: inline-block;
+}
+
+.certificate-stamp.approved {
+  color: var(--stamp-green);
+}
+.certificate-stamp.conditional {
+  color: var(--stamp-amber);
+}
+.certificate-stamp.rejected {
+  color: var(--stamp-red);
+}
+
+.certificate-table {
+  border-top: 2px solid var(--ink);
+  margin-top: 16px;
+}
+
+.certificate-table-head {
+  display: grid;
+  grid-template-columns: 1.1fr 0.7fr 2fr;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--steel);
+  padding: 10px 0;
+  border-bottom: 1px solid var(--parchment-line);
+}
+
+.certificate-table-row {
+  display: grid;
+  grid-template-columns: 1.1fr 0.7fr 2fr;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--parchment-line);
+  font-size: 12.5px;
+  align-items: baseline;
+}
+
+.certificate-factor-label {
+  font-weight: 600;
+}
+
+.certificate-factor-score {
+  font-family: var(--font-mono);
+}
+
+.certificate-factor-note {
+  color: var(--ink-soft);
+}
+
+.certificate-footnote {
+  font-size: 11px;
+  color: var(--steel);
+  line-height: 1.5;
+  margin-top: 28px;
+  border-left: 3px solid var(--gold);
+  padding-left: 12px;
+}
+
+.certificate-signature {
+  margin-top: 36px;
+  padding-top: 16px;
+  border-top: 1px solid var(--parchment-line);
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--steel);
 }
